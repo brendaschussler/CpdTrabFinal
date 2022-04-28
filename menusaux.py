@@ -62,7 +62,7 @@ def exibirmenu():
     print("[8] - Encerrar Programa")
 
 def print_menuTopFilmes():
-    print("  ______________________________________________________________________________________________________________________ ")
+    print("  ______________________________________________________________________________________________________________________  ")
     print(" |   __  __                            _____                     _    ___      _____   _   _                            | ")
     print(" |  |  \/  |   ___   _ __    _   _    |_   _|   ___    _ __     / |  / _ \    |  ___| (_) | |  _ __ ___     ___   ___   | ")
     print(" |  | |\/| |  / _ \ | '_ \  | | | |     | |    / _ \  | '_ \    | | | | | |   | |_    | | | | | '_ ` _ \   / _ \ / __|  | ")
@@ -80,13 +80,32 @@ def print_menuTopFilmes():
     print("[4] - Mais Antigos")
     print("[5] - Sair do Menu de Top 10 Filmes")
 
+def print_menuOrdenacao():
+    print("  ______________________________________________________________________________________________________________________ ")
+    print(" |                                                                                                                      | ")
+    print(" |                                                                                                                            | ")
+    print(" |                                                                                                                         | ")
+    print(" |                                                                                                           | ")
+    print(" |                                                                                                                                       | ")
+    print(" |                                                                                                                 | ")
+    print(" |______________________________________________________________________________________________________________________| ")
+    print('-' * 20)
+    print('Menu Interativo')
+    print('-' * 20)
+    print("Opcoes de Ordenacao: ")
+    print("[1] - Titulos em ordem alfabética normal")
+    print("[2] - Titulos em ordem alfabética inversa")
+    print("[3] - Ranking de popularidade em ordem normal")
+    print("[4] - Ranking de popularidade em ordem inversa")
+    print("[5] - Sair do Menu de Ordenaçao")
+
+    
 
 def heapsort(iterable):
     aux = []
     for title in iterable:
         heapq.heappush(aux, title)
     return [heapq.heappop(aux) for i in range(len(aux))]
-
 
 def BuscarObras():
     prefix = input("Digite o prefixo para Busca: ")
@@ -99,14 +118,6 @@ def BuscarObras():
         print()
         print("Foram encontrados as seguintes obras no DataBase:")
         print()
-        tempo = time.process_time()
-        vet = heapsort(list_titles)
-        #t = time.process_time() - tempo    
-        for i in vet:
-            print(i)
-        t = time.process_time() - tempo 
-        print(f"Tempo de Execução: {t}")
-        print(f"A ordenação em ordem alfabética levou {t} segundos")
         print()
 
 def BuscarObrasfilto1():
@@ -171,7 +182,6 @@ def BuscarObrasfilto3():
         for i in list_title:
             print(i)
         print()
-
 
 def BuscarObrasfilto4():
     list_title = []
@@ -377,6 +387,60 @@ def FiltrarObras():
             print("************************************************")
             pass
 
+def OrdenarObras():
+    menu = 11
+    while menu != 7:
+        print_menuOrdenacao()
+        menu = int(input("Sua opcao: "))
+        if menu == 5:
+            break
+        elif menu == 1:
+            OrdenarObrasTituloNormal()
+        elif menu == 2:
+            OrdenarObrasTituloInverso()
+        elif menu == 3:
+            OrdenarObrasRankNormal()
+        elif menu == 4:
+            OrdenarObrasRankInverso()
+            pass
+        else:
+            print()
+            print("************************************************")
+            print("Opcao invalida (Atencao para as opcoes do menu!)")
+            print("************************************************")
+            pass
+
+def OrdenarObrasTituloNormal():
+    lista_titulos = []
+    prefix = ""
+    lista_titulos = Busca_filmePrefix(prefix)
+    vet = heapsort(lista_titulos)
+
+    print("Lista de Títulos Ordenada em Ordem Alfabetica: ")  
+    print() 
+    for i in vet:
+        print(i)
+    print()
+    
+def OrdenarObrasTituloInverso():
+    lista_titulos = []
+    prefix = ""
+    lista_titulos = Busca_filmePrefix(prefix)
+    vet = heapsort(lista_titulos)
+
+    print("Lista de Títulos Ordenada em Ordem Alfabetica Inversa: ")  
+    print() 
+    for i in reversed(vet):
+        print(i)
+    print()
+
+def OrdenarObrasRankNormal():
+    print("teste3")
+
+def OrdenarObrasRankInverso():
+    print("teste4")
+
+
 def switchMainmenu():
     menu = 11
     while menu != 8:
@@ -397,6 +461,7 @@ def switchMainmenu():
         elif menu == 6:
             pass
         elif menu == 7:
+            OrdenarObras()
             pass
         else:
             print()
